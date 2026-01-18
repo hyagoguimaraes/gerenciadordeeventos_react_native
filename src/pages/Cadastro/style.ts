@@ -56,5 +56,30 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     right: 12,
     top: 15
+  },
+
+  requirementContainer: {
+    marginTop: 8,
+    marginBottom: 20,
+    padding: 12,
+    backgroundColor: '#F9F9F9',
+    borderRadius: 12,
+    gap: 4,
+  },
+
+  requirementItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+
+  requirementText: {
+    fontSize: 12,
+    color: '#A0A0A0',
+    fontWeight: '500',
+  },
+
+  requirementMet: {
+    color: '#2dcc70',
   }
 });

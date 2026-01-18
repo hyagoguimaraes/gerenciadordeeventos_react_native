@@ -9,7 +9,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { styles } from "./style";
 
 export function Eventos() {
-  const { eventos, loading, buscarEventos, deletarEvento, filtrarEventos } = useEvents();
+  const { loading, buscarEventos, deletarEvento, filtrarEventos } = useEvents();
   const { openModal } = useEventModal();
   const [search, setSearch] = useState("");
 

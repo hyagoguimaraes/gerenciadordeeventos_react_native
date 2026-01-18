@@ -3,7 +3,14 @@ import { Evento } from "../@types/event";
 import { EventModal } from "../components/EventModal"; 
 import { useEvents } from "../hooks/useEvents";
 
-export const EventModalContext = createContext({} as any);
+interface EventModalContextData {
+  isModalOpen: boolean;
+  editingEvent: Evento | null;
+  openModal: (evento?: Evento) => void;
+  closeModal: () => void;
+}
+
+export const EventModalContext = createContext({} as EventModalContextData);
 
 export const EventModalProvider = ({ children }: { children: React.ReactNode }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -1,15 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  ActivityIndicator,
-  Alert,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView
-} from "react-native";
+import { View, Text, TouchableOpacity, Image, ActivityIndicator, Alert, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { UploadCloud } from "lucide-react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
@@ -27,14 +17,12 @@ interface EventModalProps {
 export function EventModal({ onSaveSuccess }: EventModalProps) {
   const { user } = useAuth();
   const { isModalOpen, closeModal, editingEvent } = useEventModal();
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoadingCep, setIsLoadingCep] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [cepError, setCepError] = useState("");
-
   const initialFormState = {
-    id: null as number | null,
+    id: undefined as number | undefined,
     nome: "",
     data: "",
     cep: "",
@@ -45,7 +33,6 @@ export function EventModal({ onSaveSuccess }: EventModalProps) {
     uf: "",
     imagem: ""
   };
-
   const [formData, setFormData] = useState(initialFormState);
 
   useEffect(() => {
@@ -53,7 +40,7 @@ export function EventModal({ onSaveSuccess }: EventModalProps) {
       if (editingEvent) {
         setFormData({
           ...editingEvent,
-          id: editingEvent.id ?? null,
+          id: editingEvent.id ?? undefined,
           data: editingEvent.data.split('T')[0]
         });
       } else {
