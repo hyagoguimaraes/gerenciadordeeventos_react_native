@@ -9,14 +9,7 @@ interface ButtonProps extends TouchableOpacityProps {
   variant?: 'primary' | 'outline';
 }
 
-export function Button({
-  title,
-  children,
-  loading,
-  variant = 'primary',
-  style,
-  ...props
-}: ButtonProps) {
+export function Button({ title, children, loading, variant = 'primary', style, ...props}: ButtonProps) {
 
   const buttonText = children || title;
 
