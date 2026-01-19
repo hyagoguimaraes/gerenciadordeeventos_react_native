@@ -49,19 +49,24 @@ export function useEvents() {
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
 
-    const ativos = eventos.filter(e => new Date(e.data) >= hoje).length;
-    
+    const futurosOrdenados = eventos
+      .filter(e => new Date(e.data) >= hoje)
+      .sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime());
+
+    const proximosHome = futurosOrdenados.slice(0, 3);
+
     return {
       total: eventos.length,
-      ativos,
-      cidades: new Set(eventos.map(e => e.cidade.toLowerCase().trim())).size
+      cidades: new Set(eventos.map(e => e.cidade.toLowerCase().trim())).size,
+      proximosHome, 
+      quantidadeAtivos: proximosHome.length 
     };
   }, [eventos]);
 
   return {
     eventos,
     loading,
-    stats,
+    stats, 
     buscarEventos,
     deletarEvento,
     filtrarEventos,

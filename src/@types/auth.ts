@@ -16,6 +16,7 @@ export interface RegisterData extends LoginCredentials {
 export interface AuthResponse {
   token: string;
   id: number;
+  nome: string;
 }
 
 export interface AuthContextData {

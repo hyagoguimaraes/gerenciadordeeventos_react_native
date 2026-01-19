@@ -33,12 +33,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   async function login({ email, senha }: LoginCredentials) {
     try {
-      const { token, id } = await authService.login({ email, senha });
+      const { token, id, nome } = await authService.login({ email, senha });
 
       const dadosUsuario: User = { 
         email, 
         id, 
-        nome: email.split('@')[0] 
+        nome: nome || email.split('@')[0] 
       };
 
       await Promise.all([

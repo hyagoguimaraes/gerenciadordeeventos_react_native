@@ -33,11 +33,6 @@ export function Home() {
     );
   };
 
-  const proximosEventos = eventos
-    .filter(e => new Date(e.data) >= new Date())
-    .sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime())
-    .slice(0, 3);
-
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <Navbar />
@@ -50,16 +45,16 @@ export function Home() {
       >
         <View style={styles.welcomeCard}>
           <Text style={styles.welcomeTitle}>
-            Bem-vindo de volta, {user?.nome || 'admin'}!
+            Bem-vindo de volta, {user?.nome?.split(' ')[0] || 'admin'}!
           </Text>
           <Text style={styles.welcomeSubtitle}>
-            Você tem {stats.ativos} eventos agendados para os próximos dias.
+            Você tem {stats.quantidadeAtivos} eventos agendados para os próximos dias.
           </Text>
         </View>
 
         <View style={styles.statsContainer}>
           <CardResumo title="Total de Eventos" value={stats.total} icon={Calendar} />
-          <CardResumo title="Ativos" value={stats.ativos} icon={CheckCircle} />
+          <CardResumo title="Ativos" value={stats.quantidadeAtivos} icon={CheckCircle} />
           <CardResumo title="Cidades" value={stats.cidades} icon={MapPin} />
         </View>
 
@@ -71,7 +66,7 @@ export function Home() {
         </View>
 
         <View style={styles.eventList}>
-          {proximosEventos.map(evento => (
+          {stats.proximosHome.map(evento => (
             <EventCard
               key={evento.id}
               evento={evento}
